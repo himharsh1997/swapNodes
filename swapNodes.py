@@ -38,32 +38,32 @@ def createTree(treeNodes):
     return root
 
 def swapNodes(query, root):
-    stack1 = []
-    stack2 = []
+    queue1 = []
+    queue2 = []
     inOrderPerQuery = []
     queryResult = []
     currentDepth = 1
     for depthDivisor in query:
         notDone = True
-        stack1 = []
-        stack2 = []
-        stack1.append(root)
+        queue1 = []
+        queue2 = []
+        queue1.append(root)
         currentDepth = 1
         while(notDone):
-            parent = stack1.pop(0)
+            parent = queue1.pop(0)
             if(currentDepth % depthDivisor == 0):
                 temp = parent.left
                 parent.left = parent.right
                 parent.right = temp
             if(parent.left):
-                stack2.append(parent.left)
+                queue2.append(parent.left)
             if(parent.right):
-                stack2.append(parent.right)
-            if(len(stack1) == 0 and len(stack2) != 0):
-                stack1 = stack2
-                stack2 = []
+                queue2.append(parent.right)
+            if(len(queue1) == 0 and len(queue2) != 0):
+                queue1 = queue2
+                queue2 = []
                 currentDepth = currentDepth + 1
-            if(len(stack1) == 0 and len(stack2) == 0):
+            if(len(queue1) == 0 and len(queue2) == 0):
                 notDone = False
         inOrderTraversal(root, inOrderPerQuery)
         queryResult.append(list(inOrderPerQuery))
