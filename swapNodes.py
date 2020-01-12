@@ -2,7 +2,7 @@
 
 import os
 import sys
-
+sys.getrecursionlimit(1500)
 #
 # Complete the swapNodes function below.
 #
